@@ -32,7 +32,10 @@ def part_2_password(rotations):
     return dial_at_zero_count
 
 inp = open(sys.argv[1], 'r')
-rotations = [[l[0], int(l[1:])] for l in inp.readlines()]
+try:
+    rotations = [[l[0], int(l[1:])] for l in inp.readlines()]
 
-print("Part 1 Answer:", part_1_password(rotations))
-print("Part 2 Answer:", part_2_password(rotations))
+    print("Part 1 Answer:", part_1_password(rotations))
+    print("Part 2 Answer:", part_2_password(rotations))
+finally:
+    inp.close()
