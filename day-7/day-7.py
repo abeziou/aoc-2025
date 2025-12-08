@@ -34,21 +34,11 @@ def part_2_number_of_timelines(graph):
             if graph[i][beam_position] == '^':
                 new_beam_positions.add(beam_position - 1)
                 new_beam_positions.add(beam_position + 1)
-                if graph[i][beam_position - 1] == '.':
-                    graph[i][beam_position - 1] = graph[i - 1][beam_position]
-                else:
-                    graph[i][beam_position - 1] += graph[i - 1][beam_position]
-
-                if graph[i][beam_position + 1] == '.':
-                    graph[i][beam_position + 1] = graph[i - 1][beam_position]
-                else:
-                    graph[i][beam_position + 1] += graph[i - 1][beam_position]
+                add_timelines_to_position(graph[i], beam_position - 1, graph[i - 1][beam_position])
+                add_timelines_to_position(graph[i], beam_position + 1, graph[i - 1][beam_position])
             else:
                 new_beam_positions.add(beam_position)
-                if graph[i][beam_position] == '.':
-                    graph[i][beam_position] = graph[i - 1][beam_position]
-                else:
-                    graph[i][beam_position] += graph[i - 1][beam_position]
+                add_timelines_to_position(graph[i], beam_position, graph[i - 1][beam_position])
         beam_positions_above = new_beam_positions
         i += 1
     timelines = 0
@@ -56,6 +46,12 @@ def part_2_number_of_timelines(graph):
         if i != '.':
             timelines += i
     return timelines
+
+def add_timelines_to_position(line, beam_position, number_of_timelines):
+    if line[beam_position] == '.':
+        line[beam_position] = number_of_timelines
+    else:
+        line[beam_position] += number_of_timelines
 
 inp = open(sys.argv[1], 'r')
 graph = []
