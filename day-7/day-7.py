@@ -1,5 +1,4 @@
 import sys
-from functools import reduce
 
 def part_1_number_of_splits(graph):
     start_line = graph[0]
