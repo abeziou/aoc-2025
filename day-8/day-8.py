@@ -11,7 +11,7 @@ def part_1_3_largest_circuit_size(junctions):
     number_of_pairs = 10
     if len(junctions) == 1000:
         number_of_pairs = 1000
-    for i in range(1000):
+    for i in range(number_of_pairs):
         shortest_pairs.append(distance_to_pairs[i * 2])
 
     circuits = []
